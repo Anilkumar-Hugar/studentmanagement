@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Enrollmentpage</title>
+<style>
+  form input{
+       text-align:left;
+  }
+</style>
+</head>
+<body>
+  <div align="center">
+    <h1 align="center">STUDENT ENROLLMENT FORM</h1>
+    <form action="enroll" method="post">
+       <p><label>Enter the student name</label><br><input type="text" name="name" autocomplete="off"></p>
+       <p><label>Enter the student phone number</label><br><input type="text" name="phone" maxlength="10" autocomplete="off"></p>
+       <p><label>Enter the student email</label><br><input type="email" name="email" autocomplete="off"></p>
+       <p><label>Enter the student address</label><br><input type="text" name="addr" autocomplete="off"></p>
+       <p><label>Enter the course</label><br><input type="text" name="course" autocomplete="off"></p>
+       <p><label>Create password</label><br><input type="password" name="pword" autocomplete="off"></p>
+       <input type="submit" value="submit">
+    </form>
+  </div>
+</body>
+</html>
