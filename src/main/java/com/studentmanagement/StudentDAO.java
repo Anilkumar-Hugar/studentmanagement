@@ -11,82 +11,91 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 public class StudentDAO {
-	private static Logger logger=(Logger) LogManager.getLogger(DBConnection.class);
+	private static Logger logger = (Logger) LogManager.getLogger(DBConnection.class);
+
 	public int delete(HttpServletRequest req) {
-		int k=0;
+		int delete = 0;
 		try {
-			
-			Connection	con=DBConnection.getcon();
-			PreparedStatement ps=con.prepareStatement("delete from student where name=? and password=?");
+
+			Connection con = DBConnection.getcon();
+			PreparedStatement ps = con.prepareStatement("delete from student where name=? and password=?");
 			ps.setString(1, req.getParameter("name"));
 			ps.setString(2, req.getParameter("pwd"));
-			 k=ps.executeUpdate();
-		}catch(Exception e) {
-			logger.info("delete dao called");
+			delete = ps.executeUpdate();
+		} catch (Exception e) {
+			logger.info("Data unable to delete from the db");
+			logger.catching(e);
 		}
-		return k;
-		
+		return delete;
+
 	}
+
 	public int insertData(HttpServletRequest req) {
-		 int k=0;
+		int insert = 0;
 		try {
-			Connection con=DBConnection.getcon();
-			PreparedStatement ps=con.prepareStatement("insert into student values(?,?,?,?,?,?)");
+			Connection con = DBConnection.getcon();
+			PreparedStatement ps = con.prepareStatement("insert into student values(?,?,?,?,?,?)");
 			ps.setString(1, req.getParameter("name"));
 			ps.setLong(2, Long.parseLong(req.getParameter("phone")));
 			ps.setString(3, req.getParameter("email"));
 			ps.setString(4, req.getParameter("addr"));
 			ps.setString(5, req.getParameter("course"));
 			ps.setString(6, req.getParameter("pword"));
-			k=ps.executeUpdate();
-		}catch(Exception e) {
-			e.printStackTrace();
+			insert = ps.executeUpdate();
+		} catch (Exception e) {
+			logger.info("unable to insert data to db");
+			logger.catching(e);
 		}
-		return k;
-		
+
+		return insert;
+
 	}
-	public ArrayList<StudentBean> view(){
-		ArrayList<StudentBean> al=new ArrayList<StudentBean>();
+
+	public ArrayList<StudentBean> view() {
+		ArrayList<StudentBean> list = new ArrayList<StudentBean>();
 		try {
-			Connection con=DBConnection.getcon();
-			PreparedStatement ps=con.prepareStatement("select * from student");
-			ResultSet rs=ps.executeQuery();
-			while(rs.next()) {
-				StudentBean sb=new StudentBean();
+			Connection con = DBConnection.getcon();
+			PreparedStatement ps = con.prepareStatement("select * from student");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				StudentBean sb = new StudentBean();
 				sb.setName(rs.getString(1));
 				sb.setPhone(rs.getLong(2));
 				sb.setEmail(rs.getString(3));
 				sb.setAddress(rs.getString(4));
 				sb.setCourse(rs.getString(5));
 				sb.setPassword(rs.getString(6));
-				al.add(sb);
+				list.add(sb);
 			}
-		}catch(Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.info("Details have not been retrieved from db");
+			logger.catching(e);
 		}
-		return al;
-		
+		return list;
+
 	}
+
 	public StudentBean login(HttpServletRequest req) {
-		StudentBean sb=null;
+		StudentBean details = null;
 		try {
-			Connection con=DBConnection.getcon();
-			PreparedStatement ps=con.prepareStatement("select * from student where name=? and password=?");
+			Connection con = DBConnection.getcon();
+			PreparedStatement ps = con.prepareStatement("select * from student where name=? and password=?");
 			ps.setString(1, req.getParameter("uname"));
 			ps.setString(2, req.getParameter("pwd"));
-			ResultSet rs=ps.executeQuery();
-			if(rs.next()) {
-				sb=new StudentBean();
-				sb.setName(rs.getString(1));
-				sb.setPhone(rs.getLong(2));
-				sb.setEmail(rs.getString(3));
-				sb.setAddress(rs.getString(4));
-				sb.setCourse(rs.getString(5));
-				sb.setPassword(rs.getString(6));
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				details = new StudentBean();
+				details.setName(rs.getString(1));
+				details.setPhone(rs.getLong(2));
+				details.setEmail(rs.getString(3));
+				details.setAddress(rs.getString(4));
+				details.setCourse(rs.getString(5));
+				details.setPassword(rs.getString(6));
 			}
-		}catch(Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.info("Having issue while retrieving data");
+			logger.catching(e);
 		}
-		return sb;
+		return details;
 	}
 }

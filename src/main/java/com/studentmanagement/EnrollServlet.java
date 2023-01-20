@@ -1,4 +1,5 @@
 package com.studentmanagement;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -7,31 +8,31 @@ import org.apache.logging.log4j.core.Logger;
 
 import java.io.*;
 import javax.servlet.annotation.*;
+
 @SuppressWarnings("serial")
 @WebServlet("/enroll")
-public class EnrollServlet extends HttpServlet{
-	private static Logger logger=(Logger) LogManager.getLogger(EnrollServlet.class);
+public class EnrollServlet extends HttpServlet {
+	private static Logger logger = (Logger) LogManager.getLogger(EnrollServlet.class);
+
 	@Override
-	protected void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException,IOException{
-		StudentDAO ad=new StudentDAO();
-		
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		StudentDAO ad = new StudentDAO();
+
 		res.setContentType("text/html");
-		PrintWriter pw=res.getWriter();
-		
-			int k=ad.insertData(req);
-		if(k>0) {
+		PrintWriter pw = res.getWriter();
+
+		int insertData = ad.insertData(req);
+		if (insertData > 0 && ad != null) {
 			pw.println("DETAILS ADDED SUCCESSFULLY...");
 			logger.info("details addedd successfully");
-			RequestDispatcher rd=req.getRequestDispatcher("link.html");
+			RequestDispatcher rd = req.getRequestDispatcher("link.html");
 			rd.include(req, res);
-		}
-		else {
+		} else {
 			pw.println("UNABLE TO ADD DETAILS. PLEASE INSERT DETAILS AGAIN");
-			
-			RequestDispatcher rd=req.getRequestDispatcher("studentEnroll.html");
+
+			RequestDispatcher rd = req.getRequestDispatcher("studentEnroll.html");
 			rd.include(req, res);
 		}
-		
-		
+
 	}
 }
