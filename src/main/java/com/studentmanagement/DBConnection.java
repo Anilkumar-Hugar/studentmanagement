@@ -2,11 +2,11 @@ package com.studentmanagement;
 
 import java.sql.*;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.Logger;
 
 public class DBConnection {
 	private static Connection con = null;
-	private static Logger logger = (Logger) LogManager.getLogger(DBConnection.class);
+	private static Logger logger = LogManager.getLogger(DBConnection.class);
 
 	private DBConnection() {
 

@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import javax.servlet.annotation.*;
@@ -12,7 +12,7 @@ import javax.servlet.annotation.*;
 @SuppressWarnings("serial")
 @WebServlet("/enroll")
 public class EnrollServlet extends HttpServlet {
-	private static Logger logger = (Logger) LogManager.getLogger(EnrollServlet.class);
+	private static Logger logger = LogManager.getLogger(EnrollServlet.class);
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

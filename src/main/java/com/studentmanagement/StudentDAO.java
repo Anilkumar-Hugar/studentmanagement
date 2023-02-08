@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.Logger;
 
 public class StudentDAO {
-	private static Logger logger = (Logger) LogManager.getLogger(DBConnection.class);
+	private static Logger logger = LogManager.getLogger(StudentDAO.class);
 
 	public int delete(HttpServletRequest req) {
 		int delete = 0;

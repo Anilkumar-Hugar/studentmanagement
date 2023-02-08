@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("serial")
 @WebServlet("/login")
 
 public class LoginServlet extends HttpServlet {
-	private static Logger logger = (Logger) LogManager.getLogger(LoginServlet.class.getName());
+	private static Logger logger = LogManager.getLogger(LoginServlet.class);
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

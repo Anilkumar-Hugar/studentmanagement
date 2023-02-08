@@ -5,7 +5,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.annotation.*;
 import java.util.*;
@@ -13,11 +13,12 @@ import java.util.*;
 @SuppressWarnings("serial")
 @WebServlet("/view")
 public class ViewServlet extends HttpServlet {
-	ArrayList<StudentBean> list = null;
-	private static Logger logger = (Logger) LogManager.getLogger(DBConnection.class);
+	
+	private static Logger logger = LogManager.getLogger(ViewServlet.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		ArrayList<StudentBean> list = null;
 		StudentDAO ad = new StudentDAO();
 		list = ad.view();
 		res.setContentType("text/html");

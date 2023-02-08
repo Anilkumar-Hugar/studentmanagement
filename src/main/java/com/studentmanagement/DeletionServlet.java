@@ -5,14 +5,14 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.annotation.*;
 
 @SuppressWarnings("serial")
 @WebServlet("/delete")
 public class DeletionServlet extends HttpServlet {
-	private static Logger logger = (Logger) LogManager.getLogger(DeletionServlet.class);
+	private static Logger logger =  LogManager.getLogger(DeletionServlet.class);
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
